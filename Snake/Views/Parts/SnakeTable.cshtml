@@ -1,0 +1,52 @@
+﻿@model Snake.Models.API.GetFieldDataModel
+
+@{
+    <table>
+        @for (int tr_counter = 0; tr_counter < Model.FeildH; tr_counter++)
+        {
+            <tr>
+                @for (int td_counter = 0; td_counter < Model.FieldW; td_counter++)
+                {
+                    @switch (Model.FieldData[tr_counter][td_counter])
+                    {
+                        case 1://apple
+                            {
+                                <td style="background: green; border: 1px solid red; width:20px; height:20px;">
+                                </td>
+                                break;
+                            }
+                        case 2://snake body
+                            {
+                                <td style="background: darkgray; border: 1px solid red; width:20px; height:20px;">
+                                </td>
+                                break;
+                            }
+                        case 3://snake head
+                            { 
+                                <td style="background: black; border: 1px solid red; width:20px; height:20px;">
+                                </td>
+                                break;
+                            }
+                        default:
+                            {
+                                <td style="border: 1px solid red; width:20px; height:20px;">
+                                </td>
+                                break;
+                            }
+                    }
+                    //@if (Model.FieldData[tr_counter][td_counter] == 0)
+                    //{
+                    //    <td style="border: 1px solid red; width:20px; height:20px;">
+                    //    </td>
+                    //}else
+                    //{
+                    //    <td style="background: green; border: 1px solid red; width:20px; height:20px;">
+                    //    </td>
+                    //}
+                }
+
+            </tr>
+        }
+
+    </table>
+}

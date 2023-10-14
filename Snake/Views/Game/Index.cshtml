@@ -1,0 +1,47 @@
+﻿@model Snake.Models.API.GetFieldDataModel
+
+
+@section Head{
+    <script src="~/js/SnakeTableUpdater.js"></script>
+    <script>
+        let updater = new SnakeTableUpdater(250, "snakeTable");
+        updater.Start();
+    </script>
+    <script>
+        document.addEventListener("keydown", snakeTableKeyDown);
+
+        let lastKeyPressed=undefined;
+        function snakeTableKeyDown(args){
+            if(lastKeyPressed !== args.key)
+
+            switch(args.key){
+                case "ArrowUp":{
+                    $.ajax("API/GoUp");
+                    break;
+                }
+                case "ArrowDown":{
+                        $.ajax("API/GoDown");
+                    break;
+                }
+                case "ArrowLeft": {
+                        $.ajax("API/GoLeft");
+                        break;
+                    }
+                case "ArrowRight": {
+                        $.ajax("API/GoRight");
+                        break;
+                    }
+                default: break;
+
+            }
+            console.log(args);
+        }
+    </script>
+    <link rel="stylesheet" href="css/snakeField.css"/>
+
+}
+<div id="snakeTable" class="snakeTable">
+    @await Html.PartialAsync("/Views/Parts/SnakeTable.cshtml", Model)
+</div>
+
+
