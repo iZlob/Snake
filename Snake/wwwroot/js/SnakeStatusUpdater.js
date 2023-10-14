@@ -1,4 +1,4 @@
-﻿class SnakeTableUpdater {
+﻿class SnakeStatus {
     #intervalID;
     #_timeout;
     #rootnode;
@@ -15,7 +15,7 @@
 
     #Updater(_this) {
         console.log("Вызвано");
-        $('#' + _this.#rootnode).load("API/GetField");
+        $('#' + _this.#rootnode).load("API/GetStatus");
         //_this.#intervalID = setTimeout(_this.#Updater, _this.#_timeout, _this);
 
         //$('#${_this.#_rootnode}').html("");

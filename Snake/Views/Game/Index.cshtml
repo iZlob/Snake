@@ -1,11 +1,16 @@
-﻿@model Snake.Models.API.GetFieldDataModel
+﻿@using Snake.Models.API
+@model Snake.Game.Game
+
 
 
 @section Head{
     <script src="~/js/SnakeTableUpdater.js"></script>
+    <script src="~/js/SnakeStatusUpdater.js"></script>
     <script>
-        let updater = new SnakeTableUpdater(250, "snakeTable");
-        updater.Start();
+        let tableupdater = new SnakeTableUpdater(500, "snakeTable");
+        tableupdater.Start();
+        let statusupdater = new SnakeStatusUpdater(500, "snakeStatus");
+        statusupdater.Start();
     </script>
     <script>
         document.addEventListener("keydown", snakeTableKeyDown);
@@ -40,8 +45,24 @@
     <link rel="stylesheet" href="css/snakeField.css"/>
 
 }
-<div id="snakeTable" class="snakeTable">
-    @await Html.PartialAsync("/Views/Parts/SnakeTable.cshtml", Model)
+
+<div>
+    <table>
+        <tr>
+            <td>
+                <div id="snakeTable" class="snakeTable">
+                    @await Html.PartialAsync("/Views/Parts/SnakeTable.cshtml", new GetFieldDataModel(Model))
+                </div>
+            </td>
+            <td>
+                <div id="snakeStatus" class="snakeStatus">
+                    @await Html.PartialAsync("/Views/Parts/SnakeStatus.cshtml", new SnakeStatusDataModel(Model))
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>
+
+
 
 

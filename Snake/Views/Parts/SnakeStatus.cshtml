@@ -1,0 +1,40 @@
+﻿@model Snake.Models.API.SnakeStatusDataModel
+
+@{
+    Layout = null;
+}
+
+<table>
+    <tr>
+        <td colspan="2">
+            <h3> Snake statistic </h3>
+        </td>
+       
+    </tr>
+    <tr>
+        <td>snake size: </td>
+        <td >
+            @Model.SnakeSize
+        </td>
+
+    </tr>
+    <tr>
+        <td>snake score: </td>
+        <td>
+            @Model.SnakeScore
+        </td>
+
+    </tr>
+    <tr>
+        <td>snake time: </td>
+        <td>
+            @Model.SnakeTime
+        </td>
+
+    </tr>
+    <tr>
+        <td colspan="2">==========================: </td>
+        
+
+    </tr>
+</table>

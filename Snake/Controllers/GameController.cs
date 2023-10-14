@@ -8,15 +8,15 @@ namespace Snake.Controllers
 
     public class GameController : Controller
     {
-        private SnakeGame _game;
+        private readonly SnakeGame _game;
         public GameController(SnakeGame game)
         {
             _game = game;
         }
         public IActionResult Index()
         {
-            var dataModel = new GetFieldDataModel(_game);
-            return View(dataModel);
+            //var dataModel = new GetFieldDataModel(_game);
+            return View(_game);
         }
     }
 }

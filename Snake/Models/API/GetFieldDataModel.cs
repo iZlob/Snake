@@ -4,8 +4,8 @@
     public class GetFieldDataModel
     {
         private int[][] _fieldData;
-        public int FieldW => Game.Field.FIELD_W;
-        public int FeildH => Game.Field.FIELD_H;
+        public int FieldWidth => Game.Field.FIELD_WIDTH;
+        public int FeildHight => Game.Field.FIELD_HIGHT;
         public int[][] FieldData => _fieldData;
 
         public GetFieldDataModel(Game.Game game)

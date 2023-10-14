@@ -2,34 +2,34 @@
 
 @{
     <table>
-        @for (int tr_counter = 0; tr_counter < Model.FeildH; tr_counter++)
+        @for (int tr_counter = 0; tr_counter < Model.FeildHight; tr_counter++)
         {
             <tr>
-                @for (int td_counter = 0; td_counter < Model.FieldW; td_counter++)
+                @for (int td_counter = 0; td_counter < Model.FieldWidth; td_counter++)
                 {
                     @switch (Model.FieldData[tr_counter][td_counter])
                     {
                         case 1://apple
                             {
-                                <td style="background: green; border: 1px solid red; width:20px; height:20px;">
+                                <td style="background: green;">
                                 </td>
                                 break;
                             }
                         case 2://snake body
                             {
-                                <td style="background: darkgray; border: 1px solid red; width:20px; height:20px;">
+                                <td style="background: darkgray;">
                                 </td>
                                 break;
                             }
                         case 3://snake head
                             { 
-                                <td style="background: black; border: 1px solid red; width:20px; height:20px;">
+                                <td style="background: black;">
                                 </td>
                                 break;
                             }
                         default:
                             {
-                                <td style="border: 1px solid red; width:20px; height:20px;">
+                                <td>
                                 </td>
                                 break;
                             }
