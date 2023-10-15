@@ -24,7 +24,7 @@ namespace Snake.Game
 
             statistics = new Statistics(_snake);
 
-            _timer = new GameTimer(TimeSpan.FromSeconds(0.5f), _field.ChangeField, _snake.Move);
+            _timer = new GameTimer(TimeSpan.FromSeconds(0.5f), _field.ChangeField, _snake.Move, statistics.Tick);
             
         }
     }

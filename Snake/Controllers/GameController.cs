@@ -15,7 +15,6 @@ namespace Snake.Controllers
         }
         public IActionResult Index()
         {
-            //var dataModel = new GetFieldDataModel(_game);
             return View(_game);
         }
     }

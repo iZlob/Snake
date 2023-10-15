@@ -7,9 +7,9 @@ namespace Snake.Game
     {
         private readonly Snake _snake;
         public TimeSpan GameTime { get; private set; }
-        private DateTime GameStarted { get; set; }
         public int GameScore { get; private set; }
-        public int snakeSize;
+        public int snakeSize { get; private set; }
+        private DateTime GameStarted { get; set; }
         private DateTime TurnStarted { get; set; }
         public Statistics(Snake snake)
         {
@@ -17,7 +17,7 @@ namespace Snake.Game
 
             if (_snake.IsMoving)
             {
-                GameStarted = DateTime.UtcNow;
+                GameStarted = DateTime.Now;
             }
             else
             {
@@ -26,25 +26,26 @@ namespace Snake.Game
             snakeSize = _snake.SnakeSize;
             GameTime = TimeSpan.Zero;
             GameScore = 0;
+            TurnStarted = GameStarted;
         }
         public void Tick()
         {
             if (_snake.IsMoving && GameStarted == DateTime.MinValue)
             {
-                GameStarted = DateTime.Now;
-                TurnStarted = GameStarted;
+                GameStarted = DateTime.Now;                
             }
 
             if (_snake.IsMoving)
             {
                 GameTime = DateTime.Now - GameStarted;
             }
+
             if (_snake.SnakeSize != snakeSize)
             {
                 snakeSize = _snake.SnakeSize;
                 //base score 100
                 //100 for 10 turn i.e. 10 sec
-                //0 for more than 20 sec
+                //1 for more than 20 sec
 
 
                 var eatSeconds = (int)((DateTime.Now - TurnStarted).TotalSeconds);
@@ -55,6 +56,10 @@ namespace Snake.Game
                 }else if (eatSeconds <= 20)
                 {
                     GameScore += 10 * (20 - eatSeconds);
+                }
+                else
+                {
+                    GameScore += 1;
                 }
             }
         }

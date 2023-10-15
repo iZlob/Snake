@@ -9,21 +9,18 @@ namespace Snake.Controllers
     {
 
         private readonly SnakeGame _game;
-        //private object locker = new();
         public APIController(SnakeGame game)
         {
             _game = game;
         }
         public IActionResult GetField()
         {
-            //_game.Field.ChangeField();
             var dataModel = new GetFieldDataModel(_game);
             return PartialView("/Views/Parts/SnakeTable.cshtml", dataModel);
         }
 
         public IActionResult GetStatus()
         {
-            //_game.Field.ChangeField();
             var dataModel = new SnakeStatusDataModel(_game);
             return PartialView("/Views/Parts/SnakeStatus.cshtml", dataModel);
         }

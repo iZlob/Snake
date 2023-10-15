@@ -11,7 +11,10 @@ namespace Snake.Models.API
         public TimeSpan SnakeTime { get; }
         public SnakeStatusDataModel(Game.Game model)
         {
-            SnakeTime = model.statistics.GameTime;
+            int hour = model.statistics.GameTime.Hours;
+            int min = model.statistics.GameTime.Minutes;
+            int sec = model.statistics.GameTime.Seconds;
+            SnakeTime = new TimeSpan(hour, min, sec);
             SnakeSize = model.Snake.SnakeSize;
             SnakeScore = model.statistics.GameScore;
         }

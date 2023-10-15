@@ -32,18 +32,21 @@ namespace Snake.Game
         public void Move()
         {
             IsMoving = Speed != Point.Empty;
-
-            if (IsDead) return; 
+             
 
             Point head = SnakeHead;
             Point nexthead = new Point(head.X + Speed.X, head.Y + Speed.Y);
 
             IsDead = IsOutOfField(nexthead);
 
+            if (IsDead) return;
+
             _snakeBody.Dequeue();
 
             IsDead |= IsHitMyself(nexthead);
-            
+
+            if (IsDead) return;
+
             _snakeBody.Enqueue(nexthead);
             
 
