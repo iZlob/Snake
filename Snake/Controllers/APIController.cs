@@ -9,6 +9,8 @@ namespace Snake.Controllers
     {
 
         private readonly SnakeGame _game;
+
+        object locker = new();
         public APIController(SnakeGame game)
         {
             _game = game;
@@ -27,19 +29,31 @@ namespace Snake.Controllers
 
         public void GoUp()
         {
-            _game.Snake.Speed = new Point(0, -1);
+            lock (locker)
+            {
+                _game.Snake.Speed = new Point(0, -1);
+            }
         }
         public void Godown()
         {
-            _game.Snake.Speed = new Point(0, 1);
+            lock (locker)
+            {
+                _game.Snake.Speed = new Point(0, 1);
+            }
         }
         public void GoLeft()
         {
-            _game.Snake.Speed = new Point(-1, 0);
+            lock (locker)
+            {
+                _game.Snake.Speed = new Point(-1, 0);
+            }
         }
         public void GoRight()
         {
-            _game.Snake.Speed = new Point(1, 0);
+            lock (locker)
+            {
+                _game.Snake.Speed = new Point(1, 0);
+            }
         }
     }
 }

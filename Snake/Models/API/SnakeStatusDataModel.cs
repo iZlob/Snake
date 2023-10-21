@@ -8,13 +8,10 @@ namespace Snake.Models.API
     {
         public int SnakeSize { get; }
         public int SnakeScore { get; }
-        public TimeSpan SnakeTime { get; }
+        public string SnakeTime { get; }
         public SnakeStatusDataModel(Game.Game model)
         {
-            int hour = model.statistics.GameTime.Hours;
-            int min = model.statistics.GameTime.Minutes;
-            int sec = model.statistics.GameTime.Seconds;
-            SnakeTime = new TimeSpan(hour, min, sec);
+            SnakeTime = model.statistics.GameTime.ToString(@"hh\:mm\:ss");
             SnakeSize = model.Snake.SnakeSize;
             SnakeScore = model.statistics.GameScore;
         }

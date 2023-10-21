@@ -15,31 +15,50 @@
     <script>
         document.addEventListener("keydown", snakeTableKeyDown);
 
-        let lastKeyPressed=undefined;
+        let lastKeyPressed = undefined;
+        let lockKey = undefined;
+
         function snakeTableKeyDown(args){
-            if(lastKeyPressed !== args.key)
+            if (lastKeyPressed !== args.key) {
 
-            switch(args.key){
-                case "ArrowUp":{
-                    $.ajax("API/GoUp");
-                    break;
-                }
-                case "ArrowDown":{
-                        $.ajax("API/GoDown");
-                    break;
-                }
-                case "ArrowLeft": {
-                        $.ajax("API/GoLeft");
+                switch (args.key) {
+                    case "ArrowUp":{
+                        if (lockKey != "ArrowDown"){
+                            $.ajax("API/GoUp");
+                            lockKey = args.key;
+                            console.log(lockKey);
+                        }
                         break;
                     }
-                case "ArrowRight": {
-                        $.ajax("API/GoRight");
+                    case "ArrowDown":{
+                        if (lockKey != "ArrowUp"){
+                            $.ajax("API/GoDown");
+                            lockKey = args.key;
+                            console.log(lockKey);
+                        }
                         break;
                     }
-                default: break;
+                    case "ArrowLeft": {
+                        if (lockKey != "ArrowRight"){
+                            $.ajax("API/GoLeft");
+                            lockKey = args.key;
+                            console.log(lockKey);
+                        }
+                        break;
+                    }
+                    case "ArrowRight": {
+                        if (lockKey != "ArrowLeft"){
+                            $.ajax("API/GoRight");
+                            lockKey = args.key;
+                            console.log(lockKey);
+                        }
+                        break;
+                    }
+                    default: break;
 
+                }
             }
-            console.log(args);
+            //console.log(args);
         }
     </script>
     <link rel="stylesheet" href="css/snakeField.css"/>

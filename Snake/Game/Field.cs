@@ -8,7 +8,7 @@ namespace Snake.Game
 {
     public class Field
     {
-        public const int FIELD_WIDTH = 30;
+        public const int FIELD_WIDTH = 60;
         public const int FIELD_HIGHT = 30;
         public int[][] FieldData => _field;
         private int[][] _field;
