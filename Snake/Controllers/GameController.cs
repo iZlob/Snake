@@ -15,6 +15,7 @@ namespace Snake.Controllers
         }
         public IActionResult Index()
         {
+
             return View(_game);
         }
     }

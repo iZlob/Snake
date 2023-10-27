@@ -6,12 +6,16 @@
 @section Head{
     <script src="~/js/SnakeTableUpdater.js"></script>
     <script src="~/js/SnakeStatusUpdater.js"></script>
+    <script src="~/js/SnakeStatusGetter.js"></script>
     <script>
-        let tableupdater = new SnakeTableUpdater(500, "snakeTable");
+        let tableupdater = new SnakeTableUpdater(100, "snakeTable");
         tableupdater.Start();
-        let statusupdater = new SnakeStatusUpdater(500, "snakeStatus");
+        let statusupdater = new SnakeStatusUpdater(100, "snakeStatus");
         statusupdater.Start();
+        let snakeStatusGetter = new SnakeStatusGetter(100);
+        snakeStatusGetter.Start();
     </script>
+
     <script>
         document.addEventListener("keydown", snakeTableKeyDown);
 
@@ -26,7 +30,6 @@
                         if (lockKey != "ArrowDown"){
                             $.ajax("API/GoUp");
                             lockKey = args.key;
-                            console.log(lockKey);
                         }
                         break;
                     }
@@ -34,7 +37,6 @@
                         if (lockKey != "ArrowUp"){
                             $.ajax("API/GoDown");
                             lockKey = args.key;
-                            console.log(lockKey);
                         }
                         break;
                     }
@@ -42,7 +44,6 @@
                         if (lockKey != "ArrowRight"){
                             $.ajax("API/GoLeft");
                             lockKey = args.key;
-                            console.log(lockKey);
                         }
                         break;
                     }
@@ -50,17 +51,15 @@
                         if (lockKey != "ArrowLeft"){
                             $.ajax("API/GoRight");
                             lockKey = args.key;
-                            console.log(lockKey);
                         }
                         break;
                     }
                     default: break;
-
                 }
             }
-            //console.log(args);
         }
     </script>
+
     <link rel="stylesheet" href="css/snakeField.css"/>
 
 }
@@ -76,6 +75,7 @@
             <td>
                 <div id="snakeStatus" class="snakeStatus">
                     @await Html.PartialAsync("/Views/Parts/SnakeStatus.cshtml", new SnakeStatusDataModel(Model))
+                    
                 </div>
             </td>
         </tr>

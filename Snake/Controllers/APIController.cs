@@ -11,6 +11,7 @@ namespace Snake.Controllers
         private readonly SnakeGame _game;
 
         object locker = new();
+        
         public APIController(SnakeGame game)
         {
             _game = game;
@@ -20,7 +21,12 @@ namespace Snake.Controllers
             var dataModel = new GetFieldDataModel(_game);
             return PartialView("/Views/Parts/SnakeTable.cshtml", dataModel);
         }
-
+        //Get
+        public SnakeStatusDataModel GetStatusDataModel()
+        {
+            return new SnakeStatusDataModel(_game);
+        }
+        //get
         public IActionResult GetStatus()
         {
             var dataModel = new SnakeStatusDataModel(_game);
@@ -31,28 +37,32 @@ namespace Snake.Controllers
         {
             lock (locker)
             {
-                _game.Snake.Speed = new Point(0, -1);
+                if (_game.isPlay)
+                    _game.Snake.Speed = new Point(0, -1);
             }
         }
         public void Godown()
         {
             lock (locker)
             {
-                _game.Snake.Speed = new Point(0, 1);
+                if (_game.isPlay)
+                    _game.Snake.Speed = new Point(0, 1);
             }
         }
         public void GoLeft()
         {
             lock (locker)
             {
-                _game.Snake.Speed = new Point(-1, 0);
+                if (_game.isPlay)
+                    _game.Snake.Speed = new Point(-1, 0);
             }
         }
         public void GoRight()
         {
             lock (locker)
             {
-                _game.Snake.Speed = new Point(1, 0);
+                if (_game.isPlay)
+                    _game.Snake.Speed = new Point(1, 0);
             }
         }
     }

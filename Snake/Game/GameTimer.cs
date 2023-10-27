@@ -1,4 +1,4 @@
-﻿using System.Threading;
+﻿
 
 namespace Snake.Game
 {
@@ -9,9 +9,9 @@ namespace Snake.Game
         private readonly Action[] _TimerListeners;
         public GameTimer(TimeSpan timeout, params Action[] TimerListeners)
         {
-            _timer = new Timer(OnTimer);
             _timeout = timeout;
             _TimerListeners = TimerListeners;
+            _timer = new Timer(OnTimer);
 
             if (TimerListeners.Length > 0)
             {
@@ -25,6 +25,7 @@ namespace Snake.Game
                 listener();
             }
             _timer.Change(_timeout, Timeout.InfiniteTimeSpan);
+            
         }
     }
 }

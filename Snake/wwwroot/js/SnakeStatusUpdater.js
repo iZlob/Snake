@@ -24,6 +24,7 @@
         if (this.#intervalID) {
             clearInterval(this.#intervalID);
         }
+        
     }
 
 

@@ -1,5 +1,6 @@
 ﻿@model Snake.Models.API.SnakeStatusDataModel
 
+
 @{
     Layout = null;
 }
@@ -7,34 +8,50 @@
 <table>
     <tr>
         <td colspan="2">
-            <h3> Snake statistic </h3>
+            <h3>Snake statistic </h3>
         </td>
 
     </tr>
+
     <tr>
-        <td>     snake size: </td>
+        <td style="text-indent:20px;">Moving: </td>
+        <td>
+            @if (Model.IsSnakeMove == true) @Model.run 
+            @if (Model.IsSnakeMove == false) @Model.no_run
+        </td>
+
+    </tr>
+
+    <tr>
+        <td style="text-indent:20px;">Alive: </td>
+        <td>
+           @if (Model.IsSnakeAlive == true) @Model.alive
+           @if (Model.IsSnakeAlive == false) @Model.dead
+        </td>
+    </tr>
+
+    <tr>
+        <td style="text-indent:20px;">Size: </td>
         <td>
             @Model.SnakeSize
         </td>
-
     </tr>
+
     <tr>
-        <td>     score: </td>
+        <td style="text-indent:20px;">Score: </td>
         <td>
             @Model.SnakeScore
         </td>
-
     </tr>
+
     <tr>
-        <td>     time: </td>
+        <td style="text-indent:20px;">Time: </td>
         <td>
             @Model.SnakeTime
         </td>
-
     </tr>
+
     <tr>
         <td colspan="2">========================== </td>
-
-
     </tr>
 </table>
