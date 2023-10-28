@@ -27,11 +27,6 @@ namespace Snake.Game
             _field = new Field(_snake, _apple);
             statistics = new Statistics(_snake);
 
-            //_timer = new GameTimer(TimeSpan.FromSeconds(0.3f), _snake.Move, IsPlaying, statistics.Tick, _field.ChangeField, _apple.OnDataUpdated);
-            //_timer = new GameTimer(TimeSpan.FromSeconds(0.3f), _snake.Move, IsPlaying, statistics.Tick, _apple.OnDataUpdated, _field.ChangeField);
-            // _timer = new GameTimer(TimeSpan.FromSeconds(0.3f), _snake.Move, IsPlaying, _field.ChangeField, statistics.Tick, _apple.OnDataUpdated);
-            //_timer = new GameTimer(TimeSpan.FromSeconds(0.3f), _snake.Move, IsPlaying, _field.ChangeField, _apple.OnDataUpdated, statistics.Tick);
-            // _timer = new GameTimer(TimeSpan.FromSeconds(0.3f), _snake.Move, IsPlaying, _apple.OnDataUpdated, statistics.Tick, _field.ChangeField);
              _timer = new GameTimer(TimeSpan.FromSeconds(0.3f), _snake.Move, IsPlaying, _apple.OnDataUpdated, _field.ChangeField, statistics.Tick);
 
         }
