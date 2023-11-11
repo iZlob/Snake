@@ -8,14 +8,30 @@
     <script src="~/js/SnakeStatusUpdater.js"></script>
     <script src="~/js/SnakeStatusGetter.js"></script>
     <script>
+        function OnLoose(){
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const backgroundWidth = width * .8;
+            const backgroundHeight = height * .3;
+            const backgroundLeft = (width - backgroundWidth) / 2;
+            const backgroundRight = (height - backgroundHeight) / 2;
+
+            const backgroundHtml = `<div>
+                                        <span style="font-size: ${backgroundHeight * .8}px;"> Game over!!! <br> Looooser...</span> <br>
+                                        <a href="API/newGame"> <button>Попробовать еще</button> </a>
+                                    </div>`;
+
+            $("#PopupContainer").html(backgroundHtml);
+        }
+    </script>
+    <script>
         let tableupdater = new SnakeTableUpdater(100, "snakeTable");
         tableupdater.Start();
         let statusupdater = new SnakeStatusUpdater(100, "snakeStatus");
         statusupdater.Start();
-        let snakeStatusGetter = new SnakeStatusGetter(100);
+        let snakeStatusGetter = new SnakeStatusGetter(100, OnLoose);
         snakeStatusGetter.Start();
     </script>
-
     <script>
         document.addEventListener("keydown", snakeTableKeyDown);
 
@@ -59,12 +75,14 @@
             }
         }
     </script>
-
-    <link rel="stylesheet" href="css/snakeField.css"/>
-
+    <link rel="stylesheet" href="~/css/snakeField.css" />
+    <link rel="stylesheet" href="~/css/popup.css" />
 }
 
 <div>
+    <div id="PopupContainer">
+    
+    </div>
     <table>
         <tr>
             <td>

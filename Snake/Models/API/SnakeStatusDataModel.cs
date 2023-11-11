@@ -2,8 +2,7 @@
 using Snake.Game;
 
 namespace Snake.Models.API
-{
-    
+{    
     public class SnakeStatusDataModel
     {
         public int SnakeSize { get; }

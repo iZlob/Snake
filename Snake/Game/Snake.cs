@@ -16,14 +16,20 @@ namespace Snake.Game
         public bool IsMoving { get; private set; } = false;
         public bool IsGrowing { get; set; } = false;
         public int SnakeSize => _snakeBody.Count;
+
         public Snake()
+        {
+            _snakeBody = new Queue<Point>();
+
+            BornNewSnake();
+        }
+
+        public void BornNewSnake()
         {
             Random rnd = new Random();
             int headX = rnd.Next(Field.FIELD_WIDTH);
             int headY = rnd.Next(Field.FIELD_HIGHT);
 
-            _snakeBody = new Queue<Point>();
-            
             for (int i = 0; i < size; i++)
             {
                 _snakeBody.Enqueue(new Point(headX, headY));
@@ -34,13 +40,14 @@ namespace Snake.Game
 
         public void Move()
         {
+            IsMoving = Speed != Point.Empty;
+
             if (IsDead)
             {
                 IsMoving = false;
                 return;
             }
 
-            IsMoving = Speed != Point.Empty;
             Point head = SnakeHead;
             Point nexthead = new Point(head.X + Speed.X, head.Y + Speed.Y);
 
@@ -53,7 +60,6 @@ namespace Snake.Game
             }
 
             IsDead = IsHitMyself(nexthead);
-            Console.WriteLine(IsDead);
 
             if (IsDead)
             {
@@ -72,14 +78,28 @@ namespace Snake.Game
 
             _snakeBody.Enqueue(nexthead);
         }
+
         private bool IsHitMyself(Point nexthead)
         {
             return SnakeBody.Length >= size - 1 && _snakeBody.Contains(nexthead);
         }
+
         private bool IsOutOfField(Point nextHead)
         {
             return nextHead.X >= Field.FIELD_WIDTH || nextHead.X < 0 ||
                    nextHead.Y >= Field.FIELD_HIGHT || nextHead.Y < 0;
+        }
+
+        public void Reborn()
+        {
+            IsDead = false;
+            IsGrowing = false;
+            IsMoving = false;
+            Speed = Point.Empty;
+
+            _snakeBody.Clear();
+
+            BornNewSnake();
         }
     }
 }

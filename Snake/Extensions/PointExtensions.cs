@@ -15,12 +15,12 @@ namespace Snake.Extensions
 
             while (true)
             {
-                int X = rnd.Next(Field.FIELD_WIDTH);
-                int Y = rnd.Next(Field.FIELD_HIGHT);
+                int x = rnd.Next(Field.FIELD_WIDTH);
+                int y = rnd.Next(Field.FIELD_HIGHT);
 
-                if (!excludePointsFromGenerationArray.Any(z => z.X == X && z.Y == Y))
+                if (!excludePointsFromGenerationArray.Any(z => z.X == x && z.Y == y))
                 {
-                    return new Point(X, Y);
+                    return new Point(x, y);
                 }
             }
         }

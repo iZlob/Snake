@@ -1,6 +1,5 @@
 ﻿namespace Snake.Models.API
-{
-    
+{    
     public class GetFieldDataModel
     {        
         public int FieldWidth => Game.Field.FIELD_WIDTH;

@@ -1,8 +1,8 @@
-﻿.snakeTable td {
-    border: 1px solid grey;
+﻿#snakeTable td {
+    border: 1px solid #383636;
     width: 20px;
     height: 20px;
 }
-.snakeTable{
-    background-color: slategrey;
+#snakeTable {
+    background-color: #383636;
 }

@@ -7,7 +7,6 @@ namespace Snake.Controllers
 {
     public class APIController : Controller
     {
-
         private readonly SnakeGame _game;
 
         object locker = new();
@@ -16,16 +15,19 @@ namespace Snake.Controllers
         {
             _game = game;
         }
+
         public IActionResult GetField()
         {
             var dataModel = new GetFieldDataModel(_game);
             return PartialView("/Views/Parts/SnakeTable.cshtml", dataModel);
         }
+
         //Get
         public SnakeStatusDataModel GetStatusDataModel()
         {
             return new SnakeStatusDataModel(_game);
         }
+
         //get
         public IActionResult GetStatus()
         {
@@ -37,33 +39,37 @@ namespace Snake.Controllers
         {
             lock (locker)
             {
-                if (_game.isPlay)
-                    _game.Snake.Speed = new Point(0, -1);
+                _game.Snake.Speed = new Point(0, -1);
             }
         }
+
         public void Godown()
         {
             lock (locker)
             {
-                if (_game.isPlay)
-                    _game.Snake.Speed = new Point(0, 1);
+                _game.Snake.Speed = new Point(0, 1);
             }
         }
+
         public void GoLeft()
         {
             lock (locker)
             {
-                if (_game.isPlay)
-                    _game.Snake.Speed = new Point(-1, 0);
+                _game.Snake.Speed = new Point(-1, 0);
             }
         }
+
         public void GoRight()
         {
             lock (locker)
             {
-                if (_game.isPlay)
-                    _game.Snake.Speed = new Point(1, 0);
+                _game.Snake.Speed = new Point(1, 0);
             }
         }
+
+        //public void NewGame()
+        //{
+        //    _game.NewGame();
+        //}
     }
 }

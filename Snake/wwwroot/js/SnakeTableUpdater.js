@@ -8,7 +8,6 @@
         this.#rootnode = rootnodeID;
     }
 
-
     #Updater(_this) {
         $('#' + _this.#rootnode).load("API/GetField");
     }
@@ -24,7 +23,4 @@
             clearInterval(this.#intervalID);
         }
     }
-
-
- 
 }

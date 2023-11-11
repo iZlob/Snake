@@ -4,8 +4,6 @@ using SnakeGame = Snake.Game.Game;
 
 namespace Snake.Controllers
 {
-    
-
     public class GameController : Controller
     {
         private readonly SnakeGame _game;
@@ -13,9 +11,9 @@ namespace Snake.Controllers
         {
             _game = game;
         }
+
         public IActionResult Index()
         {
-
             return View(_game);
         }
     }

@@ -2,7 +2,6 @@
 
 namespace Snake.Game
 {
-    
     public class Statistics
     {
         private readonly Snake _snake;
@@ -30,6 +29,7 @@ namespace Snake.Game
             {
                 GameStarted = DateTime.MinValue;
             }
+
             TurnStarted = GameStarted;
         }
         public void Tick()
@@ -61,6 +61,7 @@ namespace Snake.Game
                 //1 for more than 20 sec
 
                 var eatSeconds = (int)(DateTime.Now - TurnStarted).TotalSeconds;
+
                 TurnStarted = DateTime.Now;
 
                 if (eatSeconds <= 10)

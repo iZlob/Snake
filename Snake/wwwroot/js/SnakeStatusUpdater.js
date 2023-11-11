@@ -8,10 +8,8 @@
         this.#rootnode = rootnodeID;
     }
 
-
     #Updater(_this) {
         $('#' + _this.#rootnode).load("API/GetStatus");
-
     }
 
     Start() {
@@ -23,10 +21,6 @@
     Stop() {
         if (this.#intervalID) {
             clearInterval(this.#intervalID);
-        }
-        
+        }    
     }
-
-
- 
 }

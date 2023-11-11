@@ -16,8 +16,6 @@ namespace Snake.Game
 
         private readonly Apple _apple;
         public Apple Apple => _apple;
-        public bool isPlay { get; private set; }
-
         public Statistics statistics { get; }
 
         public Game()
@@ -27,21 +25,15 @@ namespace Snake.Game
             _field = new Field(_snake, _apple);
             statistics = new Statistics(_snake);
 
-             _timer = new GameTimer(TimeSpan.FromSeconds(0.3f), _snake.Move, IsPlaying, _apple.OnDataUpdated, _field.ChangeField, statistics.Tick);
-
+            _timer = new GameTimer(TimeSpan.FromSeconds(0.3f), _snake.Move, _apple.OnDataUpdated, _field.ChangeField, statistics.Tick);
         }
 
-        private void IsPlaying()
+        public void NewGame()
         {
-            if (!_snake.IsDead)
-            {
-                isPlay = true;
-            }
-            else
-            {
-                isPlay = false;
-            }
+            _timer.Pause();
+            _snake.Reborn();
+            _apple.RegenerateApple();
+            _timer.Resume();
         }
     }
- 
 }
