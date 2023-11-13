@@ -16,16 +16,16 @@ namespace Snake.Game
 
         private readonly Apple _apple;
         public Apple Apple => _apple;
-        public Statistics statistics { get; }
+        public Statistics Statistics { get; }
 
         public Game()
         {
             _snake = new Snake();
             _apple = new Apple(_snake);
             _field = new Field(_snake, _apple);
-            statistics = new Statistics(_snake);
+            Statistics = new Statistics(_snake);
 
-            _timer = new GameTimer(TimeSpan.FromSeconds(0.3f), _snake.Move, _apple.OnDataUpdated, _field.ChangeField, statistics.Tick);
+            _timer = new GameTimer(TimeSpan.FromSeconds(0.3f), _snake.Move, _apple.OnDataUpdated, _field.ChangeField, Statistics.Tick);
         }
 
         public void NewGame()
@@ -33,6 +33,7 @@ namespace Snake.Game
             _timer.Pause();
             _snake.Reborn();
             _apple.RegenerateApple();
+            Statistics.RestartStatistics();
             _timer.Resume();
         }
     }

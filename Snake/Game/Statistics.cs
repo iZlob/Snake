@@ -77,5 +77,25 @@ namespace Snake.Game
                 }
             }
         }
+
+        public void RestartStatistics()
+        {
+            IsSnakeDead = false;
+            snakeSize = _snake.SnakeSize;
+            GameStoped = DateTime.MinValue;
+            GameTime = TimeSpan.Zero;
+            GameScore = 0;
+
+            if (_snake.IsMoving)
+            {
+                GameStarted = DateTime.Now;
+            }
+            else
+            {
+                GameStarted = DateTime.MinValue;
+            }
+
+            TurnStarted = GameStarted;
+        }
     }
 }

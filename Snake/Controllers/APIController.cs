@@ -67,9 +67,14 @@ namespace Snake.Controllers
             }
         }
 
-        //public void NewGame()
-        //{
-        //    _game.NewGame();
-        //}
+        public IActionResult NewGame()
+        {
+            lock (locker)
+            {
+                _game.NewGame();
+            }
+
+            return RedirectToAction("Index", "Game");
+        }
     }
 }

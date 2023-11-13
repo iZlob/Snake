@@ -12,10 +12,10 @@ namespace Snake.Models.API
         public bool IsSnakeMove { get; }
         public SnakeStatusDataModel(Game.Game model)
         {
-            SnakeTime = model.statistics.GameTime.ToString(@"hh\:mm\:ss");
+            SnakeTime = model.Statistics.GameTime.ToString(@"hh\:mm\:ss");
             SnakeSize = model.Snake.SnakeSize;
-            SnakeScore = model.statistics.GameScore;
-            IsSnakeAlive = !model.statistics.IsSnakeDead;
+            SnakeScore = model.Statistics.GameScore;
+            IsSnakeAlive = !model.Statistics.IsSnakeDead;
             IsSnakeMove = model.Snake.IsMoving;
         }
         public string alive = "Кажись живой!";
